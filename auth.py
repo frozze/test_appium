@@ -1,11 +1,8 @@
 from appium import webdriver
-from appium.webdriver.common.touch_action import TouchAction
+import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
-# SCROLL_DUR_MS = 3000
 
 
 class Authorization:
@@ -14,7 +11,7 @@ class Authorization:
             "platformName": "Android",
             "platformVersion": "9",
             "deviceName": "Android Emulator",
-            "app": "/home/pavel/Документы/appiutest/st3.apk",
+            "app": "/home/frozze/PycharmProjects/pythonProject/appiutest/st3.apk",
             "noReset": True
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=desired_capabilities)
@@ -29,11 +26,15 @@ class Authorization:
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/phoneEditText").send_keys("1234567894")
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/getCodeButton").click()
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/editText").send_keys("1234")
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton")
-        # self.scroll_page()
 
-    # def scroll_page(self):
-    #     self.driver.swipe(150, 400, 150, 200, 1000)
+        self.driver.implicitly_wait(20)
+        element_to_tap = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/ordersButton")
+        element_to_drag_to = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/profileImageView")
+        self.driver.scroll(element_to_tap, element_to_drag_to)
+        self.driver.implicitly_wait(10)
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
+        # self.driver.find_element(By.ID, "android:id/button2").click()  #Отмена
+        self.driver.find_element(By.ID, "android:id/button1").click()  #OK
 
 
 login = Authorization()
