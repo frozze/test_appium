@@ -34,12 +34,14 @@ class Authorization:
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/getCodeButton").click()
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/editText").send_keys("1234")
         self.driver.implicitly_wait(15)
-        self.driver.swipe(470, 1400, 470, 950, 330)
-        # lst = self.driver.find_element(By.ID, 'com.abc.android.abc:id/common_tab_list')
-        # action = TouchAction(self.driver)
-        # for i in range(0, 10):
-        #     action.press(x=750, y=1750).move_to(x=0, y=-75).perform()
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton")
+
+        element_to_tap = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/ordersButton")
+        element_to_drag_to = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/profileImageView")
+        self.driver.scroll(element_to_tap, element_to_drag_to)
+        self.driver.implicitly_wait(10)
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
+        # self.driver.find_element(By.ID, "android:id/button2").click()  #Отмена
+        self.driver.find_element(By.ID, "android:id/button1").click()  # OK
 
     def get_myWindow_size(self):
 
@@ -50,5 +52,4 @@ class Authorization:
 
 
 login = Authorization()
-print(login.get_myWindow_size())
 login.log()
