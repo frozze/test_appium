@@ -7,7 +7,7 @@ desired_capabilities = {
     "platformName": "Android",
     "platformVersion": "9",
     "deviceName": "Android Emulator",
-    "app": "/home/pavel/Документы/appiutest/st3.apk",
+    "app": "/home/pavel/Документы/test_login_android/st3.apk",
     "noReset": True
 }
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=desired_capabilities)

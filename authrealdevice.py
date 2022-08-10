@@ -16,7 +16,7 @@ class Authorization:
             "platformVersion": "7",
             "uid": "2a1958850904",
             "deviceName": "Xiaomi Redmi Note 4",
-            "app": "/home/pavel/Документы/appiutest/st3.apk",
+            "app": "/home/pavel/Документы/test_login_android/st3.apk",
             "noReset": True
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=desired_capabilities)
