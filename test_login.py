@@ -10,9 +10,9 @@ class TestAuthorization():
         self.element = None
         desired_capabilities = {
             "platformName": "Android",
-            "platformVersion": "9",
+            "platformVersion": "11",
             "deviceName": "Android Emulator",
-            "app": "D:\/test_appium\st1.apk",
+            "app": "/home/frozze/PycharmProjects/appiutest/st1.apk",
             "noReset": True
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=desired_capabilities)
