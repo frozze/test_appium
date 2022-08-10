@@ -6,18 +6,19 @@ import pytest
 
 
 class TestAuthorization():
-    @pytest.fixture(scope='session')
     def __init__(self):
         self.element = None
         desired_capabilities = {
             "platformName": "Android",
-            "platformVersion": "11",
+            "platformVersion": "9",
             "deviceName": "Android Emulator",
-            "app": "/home/pavel/Documents/test_login_android/st1.apk",
+            "app": "D:\/test_appium\st1.apk",
             "noReset": True
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=desired_capabilities)
 
+    @pytest.mark.log_logout
+    @pytest.mark.login
     def test_log_in(self):
         print('Login test started')
         # geo = WebDriverWait(self.driver, 20).until(
@@ -42,6 +43,8 @@ class TestAuthorization():
         assert True, "Login test failed"
         print('Login test finished')
 
+    @pytest.mark.log_logout
+    @pytest.mark.logout
     def test_log_out(self):
         self.driver.implicitly_wait(10)
         print("Logout test stated")
