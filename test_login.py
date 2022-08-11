@@ -14,7 +14,8 @@ class TestAuthorization:
     def test_log_in(self):
         print('Login test started')
         self.geo = WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.ID, "com.android.permissioncontroller:id/permission_allow_foreground_only_button"))
+            EC.presence_of_element_located(
+                (By.ID, "com.android.permissioncontroller:id/permission_allow_foreground_only_button"))
         )
         self.geo.click()
         self.city = WebDriverWait(self.driver, 20).until(
@@ -32,7 +33,8 @@ class TestAuthorization:
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/phoneEditText").send_keys("1234567894")
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/getCodeButton").click()
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/editText").send_keys("2234")
-        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/ordersButton") != 0, "Authorization test failed"
+        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/ordersButton") != 0, \
+            "Authorization test failed"
 
     @pytest.mark.log_logout
     @pytest.mark.logout
@@ -48,4 +50,5 @@ class TestAuthorization:
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
         # self.driver.find_element(By.ID, "android:id/button2").click()  #Отмена
         self.driver.find_element(By.ID, "android:id/button1").click()  # OK
-        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/loginButton") != 0, "Logout test failed"
+        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/loginButton") != 0, \
+            "Logout test failed"
