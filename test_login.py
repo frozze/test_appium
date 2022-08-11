@@ -48,7 +48,9 @@ class TestAuthorization:
         self.driver.scroll(element_to_tap, element_to_drag_to)
         self.driver.implicitly_wait(10)
         self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
-        # self.driver.find_element(By.ID, "android:id/button2").click()  #Отмена
+        self.driver.find_element(By.ID, "android:id/button2").click()  #Отмена
+        self.driver.implicitly_wait(5)
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
         self.driver.find_element(By.ID, "android:id/button1").click()  # OK
         assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/loginButton") != 0, \
             "Logout test failed"

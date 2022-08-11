@@ -4,7 +4,7 @@ def android_11():
         "platformName": "Android",
         "platformVersion": "11",
         "deviceName": "Android Emulator",
-        "app": "/home/pavel/Documents/test_login_android/st3.apk",
+        "app": "/home/frozze/PycharmProjects/appiutest/st3.apk",
         # "noReset": True
     }
     return desired_capabilities
