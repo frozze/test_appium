@@ -3,9 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from desired_caps import driver11
+from desired_caps.capabilities import android_11
+
 
 class TestAuthorization:
+    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=android_11())
 
     @pytest.mark.log_logout
     @pytest.mark.login
@@ -21,7 +23,8 @@ class TestAuthorization:
         )
         self.city.click()
         self.element = WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.ID, "ru.tokyocity.tokyocity.stage3:id/more"))
+            EC.presence_of_element_located(
+                (By.ID, "ru.tokyocity.tokyocity.stage3:id/more"))
         )
         self.element.click()
         self.driver.implicitly_wait(10)
