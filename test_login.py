@@ -20,37 +20,37 @@ class TestAuthorization:
         self.geo.click()
         self.city = WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located(
-                (By.XPATH, "//android.widget.LinearLayout[2]/android.widget.TextView"))
+                (By.XPATH, "//*[contains(@text, 'Санкт-Петербург')]"))
         )
         self.city.click()
         self.element = WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located(
-                (By.ID, "ru.tokyocity.tokyocity.stage3:id/more"))
+                (By.ID, "ru.tokyocity.tokyocity.test:id/more"))
         )
         self.element.click()
         self.driver.implicitly_wait(10)
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/loginButton").click()
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/phoneEditText").send_keys("1234567894")
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/getCodeButton").click()
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/editText").send_keys("2234")
-        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/ordersButton") != 0, \
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/loginButton").click()
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/phoneEditText").send_keys("1234567892")
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/getCodeButton").click()
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/editText").send_keys("2234")
+        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/ordersButton") != 0, \
             "Authorization test failed"
 
     @pytest.mark.log_logout
     @pytest.mark.logout
     def test_log_out(self):
         self.element = WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.ID, "ru.tokyocity.tokyocity.stage3:id/more"))
+            EC.presence_of_element_located((By.ID, "ru.tokyocity.tokyocity.test:id/more"))
         )
         self.element.click()
-        element_to_tap = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/ordersButton")
-        element_to_drag_to = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/profileImageView")
+        element_to_tap = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/ordersButton")
+        element_to_drag_to = self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/profileImageView")
         self.driver.scroll(element_to_tap, element_to_drag_to)
         self.driver.implicitly_wait(10)
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/logoutButton").click()
         self.driver.find_element(By.ID, "android:id/button2").click()  #Отмена
         self.driver.implicitly_wait(5)
-        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/logoutButton").click()
+        self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/logoutButton").click()
         self.driver.find_element(By.ID, "android:id/button1").click()  # OK
-        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.stage3:id/loginButton") != 0, \
+        assert self.driver.find_element(By.ID, "ru.tokyocity.tokyocity.test:id/loginButton") != 0, \
             "Logout test failed"
