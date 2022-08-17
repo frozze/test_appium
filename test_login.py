@@ -3,11 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from desired_caps.capabilities import android_11
+from desired_caps.capabilities import redmi_note_4
 
 
 class TestAuthorization:
-    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=android_11())
+    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=redmi_note_4())
 
     @pytest.mark.log_logout
     @pytest.mark.login
@@ -15,7 +15,8 @@ class TestAuthorization:
         print('Login test started')
         self.geo = WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located(
-                (By.ID, "com.android.permissioncontroller:id/permission_allow_foreground_only_button"))
+                (By.ID, "com.android.packageinstaller:id/permission_allow_button"))
+                # (By.ID, "com.android.permissioncontroller:id/permission_allow_foreground_only_button"))
         )
         self.geo.click()
         self.city = WebDriverWait(self.driver, 20).until(
