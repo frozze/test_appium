@@ -3,11 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from desired_caps.capabilities import redmi_note_4
+from desired_caps.capabilities import android_11
 
 
 class TestAuthorization:
-    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=redmi_note_4())
+    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities=android_11())
 
     @pytest.mark.log_logout
     @pytest.mark.login
